@@ -1,2 +1,2 @@
-rootProject.name = "peppers-portfolio-mobile"
+rootProject.name = "you-portfolio-mobile"
 include ':app'

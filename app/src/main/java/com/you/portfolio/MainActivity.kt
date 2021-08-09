@@ -1,4 +1,4 @@
-package com.peppers.portfolio
+package com.you.portfolio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
