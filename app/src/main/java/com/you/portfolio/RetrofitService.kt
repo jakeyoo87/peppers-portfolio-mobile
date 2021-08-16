@@ -6,10 +6,18 @@ import retrofit2.http.*
 
 interface RetrofitService {
 
+//    @POST("user/signup/")
+//    fun signup(
+//        @Body signupUser: SignupUser
+//    ): Call<User>
+
     @POST("user/signup/")
+    @FormUrlEncoded
     fun signup(
-        @Body signupUser: SignupUser
-    ): Call<User>
+        @Field("username") username: String,
+        @Field("password1") password1: String,
+        @Field("password2") password2: String,
+    ):Call<User>
 
     @POST("user/login/")
     fun login(

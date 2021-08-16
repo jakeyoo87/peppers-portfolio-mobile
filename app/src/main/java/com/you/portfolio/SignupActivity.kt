@@ -34,34 +34,32 @@ class SignupActivity : AppCompatActivity() {
 
     private fun setupListener() {
         signupButton.setOnClickListener {
+            val username = emailView.text.toString()
+            val password1 = passwordView1.text.toString()
+            val password2 = passwordView2.text.toString()
             (application as GlobalApplication).service
-                .signup(getSignupUser())
+                .signup(username, password1, password2)
                 .enqueue(signupCallback())
         }
-    }
-
-    private fun getSignupUser(): SignupUser {
-        val email = emailView.text.toString()
-        val password1 = passwordView1.text.toString()
-        val password2 = passwordView1.text.toString()
-
-        return SignupUser(username = email, password1 = password1, password2 = password2)
     }
 
     private fun signupCallback(): Callback<User> {
         return object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@SignupActivity, "가입에 실패하였습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@SignupActivity, "가입에 실패하였습니다.", Toast.LENGTH_LONG)
+                    .show()
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@SignupActivity, "가입에 성공하였습니다.", Toast.LENGTH_LONG).show()
                     val user = response.body()
                     val token = user?.token
                     saveToken(token)
+                    Toast.makeText(this@SignupActivity, "가입에 성공하였습니다.", Toast.LENGTH_LONG)
+                        .show()
                 } else {
-                    Toast.makeText(this@SignupActivity, response.message(), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@SignupActivity, response.message(), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }
