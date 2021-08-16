@@ -16,7 +16,7 @@ class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
-        //chrome://inspect/#devices
+        //chrome://inspect/
         createRetrofit()
     }
 
@@ -57,7 +57,7 @@ class GlobalApplication : Application() {
     }
 
     private fun getToken(): String? {
-        val sharedPref = getSharedPreferences("token", Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences("login", Context.MODE_PRIVATE)
         return sharedPref.getString("token", null)
     }
 
