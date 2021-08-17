@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">you-portfolio-mobile</string>
     <string name="app_name_ui">Your Portfolio</string>
-    <string name="id_hint">Email</string>
-    <string name="password_hint">Password</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="login">Login</string>
+    <string name="id_hint">이메일</string>
+    <string name="password_hint">비밀번호</string>
+    <string name="sign_up">가입하기</string>
+    <string name="login">로그인</string>
 </resources>

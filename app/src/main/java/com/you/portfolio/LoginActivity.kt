@@ -1,6 +1,7 @@
 package com.you.portfolio
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -33,40 +34,36 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupListener() {
         loginButton.setOnClickListener {
+            val email = emailView.text.toString()
+            val password = passwordView.text.toString()
             (application as GlobalApplication).service
-                .login(getLoginUser())
+                .login(email, password)
                 .enqueue(loginCallback())
         }
-    }
-
-    private fun getLoginUser(): LoginUser {
-        val email = emailView.text.toString()
-        val password = passwordView.text.toString()
-
-        return LoginUser(username = email, password = password)
+        signupButton.setOnClickListener {
+            startActivity(Intent(this, SignupActivity::class.java))
+        }
     }
 
     private fun loginCallback(): Callback<User> {
         return object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Toast.makeText(this@LoginActivity, "가입에 실패하였습니다.", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@LoginActivity, "로그인에 실패하였습니다.", Toast.LENGTH_LONG)
+                    .show()
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
-                    Toast.makeText(this@LoginActivity, "가입에 성공하였습니다.", Toast.LENGTH_LONG).show()
                     val user = response.body()
                     val token = user?.token
-                    saveToken(token)
+                    (application as GlobalApplication).saveToken(token)
+                    Toast.makeText(this@LoginActivity, "로그인 성공하였습니다.", Toast.LENGTH_LONG)
+                        .show()
+                } else {
+                    Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }
-    }
-
-    private fun saveToken(token: String?) {
-        getSharedPreferences("login", Context.MODE_PRIVATE)
-            .edit()
-            .putString("token", token)
-            .apply()
     }
 }

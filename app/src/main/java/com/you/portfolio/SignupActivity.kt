@@ -1,9 +1,8 @@
 package com.you.portfolio
 
-import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -54,21 +53,15 @@ class SignupActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val user = response.body()
                     val token = user?.token
-                    saveToken(token)
+                    (application as GlobalApplication).saveToken(token)
                     Toast.makeText(this@SignupActivity, "가입에 성공하였습니다.", Toast.LENGTH_LONG)
                         .show()
+                    startActivity(Intent(this@SignupActivity, LoginActivity::class.java))
                 } else {
                     Toast.makeText(this@SignupActivity, response.message(), Toast.LENGTH_LONG)
                         .show()
                 }
             }
         }
-    }
-
-    private fun saveToken(token: String?) {
-        getSharedPreferences("login", Context.MODE_PRIVATE)
-            .edit()
-            .putString("token", token)
-            .apply()
     }
 }

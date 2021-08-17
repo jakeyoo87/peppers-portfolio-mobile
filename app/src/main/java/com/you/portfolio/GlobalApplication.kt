@@ -61,4 +61,11 @@ class GlobalApplication : Application() {
         return sharedPref.getString("token", null)
     }
 
+    fun saveToken(token: String?) {
+        getSharedPreferences("login", Context.MODE_PRIVATE)
+            .edit()
+            .putString("token", token)
+            .apply()
+        createRetrofit()
+    }
 }
