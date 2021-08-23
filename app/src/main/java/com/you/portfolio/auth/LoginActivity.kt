@@ -1,12 +1,14 @@
-package com.you.portfolio
+package com.you.portfolio.auth
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.you.portfolio.GlobalApplication
+import com.you.portfolio.sample.PostActivity
+import com.you.portfolio.R
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,9 +22,13 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
-        initView()
-        setupListener()
+        if ((application as GlobalApplication).isLoggedIn()) {
+            startActivity(Intent(this, PostActivity::class.java))
+        } else {
+            setContentView(R.layout.activity_login)
+            initView()
+            setupListener()
+        }
     }
 
     private fun initView() {
@@ -47,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun loginCallback(): Callback<User> {
         return object : Callback<User> {
+
             override fun onFailure(call: Call<User>, t: Throwable) {
                 Toast.makeText(this@LoginActivity, "로그인에 실패하였습니다.", Toast.LENGTH_LONG)
                     .show()
@@ -59,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     (application as GlobalApplication).saveToken(token)
                     Toast.makeText(this@LoginActivity, "로그인 성공하였습니다.", Toast.LENGTH_LONG)
                         .show()
+                    startActivity(Intent(this@LoginActivity, PostActivity::class.java))
                 } else {
                     Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_LONG)
                         .show()

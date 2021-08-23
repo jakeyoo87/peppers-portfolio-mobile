@@ -52,7 +52,7 @@ class GlobalApplication : Application() {
         service = retrofit.create(RetrofitService::class.java)
     }
 
-    private fun isLoggedIn(): Boolean {
+    fun isLoggedIn(): Boolean {
         return getToken() != null
     }
 

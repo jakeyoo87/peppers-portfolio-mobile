@@ -1,4 +1,4 @@
-package com.you.portfolio
+package com.you.portfolio.auth
 
 import java.io.Serializable
 

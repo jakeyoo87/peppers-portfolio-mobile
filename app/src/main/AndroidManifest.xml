@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Youportfoliomobile">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".sample.PostActivity" />
+        <activity android:name=".auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +21,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignupActivity"
-            android:parentActivityName=".LoginActivity" />
-        <activity android:name=".MainActivity" />
+            android:name=".auth.SignupActivity"
+            android:parentActivityName=".auth.LoginActivity" />
     </application>
 
 </manifest>
