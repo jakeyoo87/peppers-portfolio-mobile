@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.you.portfolio.GlobalApplication
+import com.you.portfolio.HomeActivity
 import com.you.portfolio.sample.PostActivity
 import com.you.portfolio.R
 import retrofit2.Call
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if ((application as GlobalApplication).isLoggedIn()) {
-            startActivity(Intent(this, PostActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
         } else {
             setContentView(R.layout.activity_login)
             initView()

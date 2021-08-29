@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.you.portfolio">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
@@ -12,6 +10,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Youportfoliomobile">
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CollectionDemo"
+            android:exported="true" />
         <activity android:name=".sample.PostActivity" />
         <activity android:name=".auth.LoginActivity">
             <intent-filter>
@@ -24,5 +28,7 @@
             android:name=".auth.SignupActivity"
             android:parentActivityName=".auth.LoginActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
