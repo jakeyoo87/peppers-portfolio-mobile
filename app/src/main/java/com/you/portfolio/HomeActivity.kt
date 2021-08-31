@@ -2,10 +2,6 @@ package com.you.portfolio
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -18,15 +14,15 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager2
 
-    val fragmentList =
+    private val fragmentList =
         arrayListOf(HomeFragment(), IndexFragment(), NewsFragment(), SettingFragment())
-    private val tabTextList = arrayListOf("Yours", "Index", "News", "Setting")
-//        val tabIconList = arrayListOf(
-//            R.drawable.home_icon,
-//            R.drawable.index_icon,
-//            R.drawable.news_icon,
-//            R.drawable.setting_icon
-//        )
+    private val tabTextList = arrayListOf("자산", "지표", "뉴스", "설정")
+    private val tabIconList = arrayListOf(
+        R.drawable.ic_round_paid_24,
+        R.drawable.ic_round_trending_up_24,
+        R.drawable.ic_round_article_24,
+        R.drawable.ic_round_account_circle_24
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +38,7 @@ class HomeActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = tabTextList[position]
-//            tab.setIcon(tabIconList[position])
+            tab.setIcon(tabIconList[position])
         }.attach()
     }
 }
@@ -50,14 +46,9 @@ class HomeActivity : AppCompatActivity() {
 class ViewPagerAdapter(
     fragmentActivity: FragmentActivity,
     private val fragmentList: ArrayList<Fragment>
-) :
-    FragmentStateAdapter(fragmentActivity) {
+) : FragmentStateAdapter(fragmentActivity) {
 
-    override fun getItemCount(): Int {
-        return fragmentList.size
-    }
+    override fun getItemCount(): Int = fragmentList.size
 
-    override fun createFragment(position: Int): Fragment {
-        return fragmentList[position]
-    }
+    override fun createFragment(position: Int): Fragment = fragmentList[position]
 }
