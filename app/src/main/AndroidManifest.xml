@@ -11,12 +11,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Youportfoliomobile">
         <activity
-            android:name=".HomeActivity"
+            android:name=".sample.MyPostActivity"
             android:exported="true" />
         <activity
-            android:name=".CollectionDemo"
+            android:name=".sample.PostActivity"
             android:exported="true" />
-        <activity android:name=".sample.PostActivity" />
+        <activity
+            android:name=".sample.UploadActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
+            android:exported="true" />
         <activity android:name=".auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +33,7 @@
             android:name=".auth.SignupActivity"
             android:parentActivityName=".auth.LoginActivity" />
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.INTERNET" />
 

@@ -8,8 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import com.you.portfolio.GlobalApplication
 import com.you.portfolio.HomeActivity
-import com.you.portfolio.sample.PostActivity
 import com.you.portfolio.R
+import com.you.portfolio.sample.UploadActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                     (application as GlobalApplication).saveToken(token)
                     Toast.makeText(this@LoginActivity, "로그인 성공하였습니다.", Toast.LENGTH_LONG)
                         .show()
-                    startActivity(Intent(this@LoginActivity, PostActivity::class.java))
+                    startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                 } else {
                     Toast.makeText(this@LoginActivity, response.message(), Toast.LENGTH_LONG)
                         .show()
